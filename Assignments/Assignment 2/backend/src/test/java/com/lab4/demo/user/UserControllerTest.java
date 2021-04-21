@@ -108,22 +108,6 @@ class UserControllerTest extends BaseControllerTest {
         result.andExpect(status().isOk())
                 .andExpect(jsonContentToBe(user));
     }
-    //TODO: vezi video sfarsit pentru UNPARSABLE ERROR
-    @Test
-    void edit() throws Exception {
-        long id = randomLong();
-        UserDTO reqUser = UserDTO.builder()
-                .username("username_cool")
-                .password("!31243rqaQWEQ")
-                .email("blabla_2421@gmail.com")
-                .build();
-
-        when(userService.edit(id, reqUser)).thenReturn(reqUser);
-
-        ResultActions result = performPutWithRequestBodyAndPathVariable(USERS + ENTITY, reqUser, id);
-        result.andExpect(status().isOk())
-                .andExpect(jsonContentToBe(reqUser));
-    }
     @Test
     void changePassword() throws Exception {
         long id = randomLong();
@@ -140,4 +124,22 @@ class UserControllerTest extends BaseControllerTest {
         result.andExpect(status().isOk())
                 .andExpect(jsonContentToBe(reqUser));
     }
+    //TODO: vezi video sfarsit pentru UNPARSABLE ERROR
+    @Test
+    void edit() throws Exception {
+        long id = randomLong();
+        UserDTO reqUser = UserDTO.builder()
+                .username("username_cool")
+                .password("!31243rqaQWEQ")
+                .email("blabla_2421@gmail.com")
+                .role("EMPLOYEE")
+                .build();
+
+        when(userService.edit(id, reqUser)).thenReturn(reqUser);
+
+        ResultActions result = performPutWithRequestBodyAndPathVariable(USERS + ENTITY, reqUser, id);
+        result.andExpect(status().isOk())
+                .andExpect(jsonContentToBe(reqUser));
+    }
+
 }

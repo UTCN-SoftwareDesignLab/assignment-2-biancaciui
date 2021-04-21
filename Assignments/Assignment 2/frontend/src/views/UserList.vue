@@ -12,18 +12,19 @@
       ></v-text-field>
       <v-spacer></v-spacer>
       <v-btn @click="addUser">Add User</v-btn>
-      <v-btn @click="go2booksView">Edit Books</v-btn>
+      <v-btn @click="go2booksView">► Books</v-btn>
     </v-card-title>
     <v-data-table
       :headers="headers"
-      :books="users"
+      :items="users"
       :search="search"
       @click:row="editUser"
+      @refresh="refreshList"
     ></v-data-table>
 
     <UserDialog
         :opened="dialogVisible"
-        :book="selectedUser"
+        :user="selectedUser"
         @refresh="refreshList"
     ></UserDialog>
   </v-card>
@@ -46,7 +47,7 @@ export default {
         {
           text: "Username",
           align: "start",
-          sortable: false,
+          sortable: true,
           value: "username",
         },
         { text: "Email", value: "email" },
@@ -73,8 +74,11 @@ export default {
       router.push("/books");
     },
   },
-  async created() {
-    this.users = await api.users.allUsers();
+  created() {
+    this.refreshList();
+  },
+  mounted() {
+    this.refreshList();
   },
 };
 </script>

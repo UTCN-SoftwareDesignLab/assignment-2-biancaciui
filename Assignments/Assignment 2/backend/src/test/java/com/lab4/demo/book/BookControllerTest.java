@@ -58,7 +58,6 @@ class BookControllerTest extends BaseControllerTest {
 
         response.andExpect(status().isOk())
                 .andExpect(jsonContentToBe(items));
-
     }
 
     @Test
@@ -108,23 +107,25 @@ class BookControllerTest extends BaseControllerTest {
         result.andExpect(status().isOk())
                 .andExpect(jsonContentToBe(reqItem));
     }
-//    @Test
-//    void changeName() throws Exception {
-//        long id = randomLong();
-//        String newName = randomString();
-//        BookDTO reqItem = BookDTO.builder()
-//                .id(id)
-//                .name(newName)
-//                .description(randomString())
-//                .amount(200)
-//                .build();
-//
-//        when(bookService.changeName(id, newName)).thenReturn(reqItem);
-//
-//        ResultActions result = performPatchWithRequestBodyAndPathVariable(BOOKS+ENTITY, newName, id);
-//        result.andExpect(status().isOk())
-//                .andExpect(jsonContentToBe(reqItem));
-//    }
+    @Test
+    void changeName() throws Exception {
+        long id = randomLong();
+        String newName = randomString();
+        BookDTO reqItem = BookDTO.builder()
+                .id(id)
+                .name(newName)
+                .description(randomString())
+                .amount(200)
+                .build();
+
+        when(bookService.changeName(id, newName)).thenReturn(reqItem);
+
+        ResultActions result = performPatchWithRequestBodyAndPathVariable(BOOKS+ENTITY, newName, id);
+        result.andExpect(status().isOk())
+                .andExpect(jsonContentToBe(reqItem));
+    }
+
+
     @Test
     void changeAmount() throws Exception {
         long id = randomLong();
@@ -142,54 +143,54 @@ class BookControllerTest extends BaseControllerTest {
         result.andExpect(status().isOk())
                 .andExpect(jsonContentToBe(reqItem));
     }
-//    @Test
-//    void changeAuthor() throws Exception {
-//        long id = randomLong();
-//        String newName = randomString();
-//        BookDTO reqItem = BookDTO.builder()
-//                .id(id)
-//                .name(newName)
-//                .description(randomString())
-//                .build();
-//
-//        when(bookService.changeName(id, newName)).thenReturn(reqItem);
-//
-//        ResultActions result = performPatchWithRequestBodyAndPathVariable(BOOKS + ENTITY, newName, id);
-//        result.andExpect(status().isOk())
-//                .andExpect(jsonContentToBe(reqItem));
-//    }
-//    @Test
-//    void changeGenre() throws Exception {
-//        long id = randomLong();
-//        String newName = randomString();
-//        BookDTO reqItem = BookDTO.builder()
-//                .id(id)
-//                .name(newName)
-//                .description(randomString())
-//                .build();
-//
-//        when(bookService.changeName(id, newName)).thenReturn(reqItem);
-//
-//        ResultActions result = performPatchWithRequestBodyAndPathVariable(BOOKS + ENTITY, newName, id);
-//        result.andExpect(status().isOk())
-//                .andExpect(jsonContentToBe(reqItem));
-//    }
-//    @Test
-//    void changeDescription() throws Exception {
-//        long id = randomLong();
-//        String newName = randomString();
-//        BookDTO reqItem = BookDTO.builder()
-//                .id(id)
-//                .name(newName)
-//                .description(randomString())
-//                .build();
-//
-//        when(bookService.changeName(id, newName)).thenReturn(reqItem);
-//
-//        ResultActions result = performPatchWithRequestBodyAndPathVariable(BOOKS + ENTITY, newName, id);
-//        result.andExpect(status().isOk())
-//                .andExpect(jsonContentToBe(reqItem));
-//    }
+    @Test
+    void changeAuthor() throws Exception {
+        long id = randomLong();
+        String newName = randomString();
+        BookDTO reqItem = BookDTO.builder()
+                .id(id)
+                .name(newName)
+                .description(randomString())
+                .build();
+
+        when(bookService.changeName(id, newName)).thenReturn(reqItem);
+
+        ResultActions result = performPatchWithRequestBodyAndPathVariable(BOOKS + ENTITY, newName, id);
+        result.andExpect(status().isOk())
+                .andExpect(jsonContentToBe(reqItem));
+    }
+    @Test
+    void changeGenre() throws Exception {
+        long id = randomLong();
+        String newName = randomString();
+        BookDTO reqItem = BookDTO.builder()
+                .id(id)
+                .name(newName)
+                .description(randomString())
+                .build();
+
+        when(bookService.changeName(id, newName)).thenReturn(reqItem);
+
+        ResultActions result = performPatchWithRequestBodyAndPathVariable(BOOKS + ENTITY, newName, id);
+        result.andExpect(status().isOk())
+                .andExpect(jsonContentToBe(reqItem));
+    }
+    @Test
+    void changeDescription() throws Exception {
+        long id = randomLong();
+        String newName = randomString();
+        BookDTO reqItem = BookDTO.builder()
+                .id(id)
+                .name(newName)
+                .description(randomString())
+                .build();
+
+        when(bookService.changeName(id, newName)).thenReturn(reqItem);
+
+        ResultActions result = performPatchWithRequestBodyAndPathVariable(BOOKS + ENTITY, newName, id);
+        result.andExpect(status().isOk())
+                .andExpect(jsonContentToBe(reqItem));
+    }
 
     @Test
     void getBook() throws Exception {

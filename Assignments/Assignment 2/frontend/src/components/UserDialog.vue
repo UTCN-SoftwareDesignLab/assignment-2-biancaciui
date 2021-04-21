@@ -7,7 +7,7 @@
     <template>
       <v-card>
         <v-toolbar color="primary" dark>
-          {{ isNew ? "Create user" : "Edit user" }}
+          {{ isNewUser ? "Create user" : "Edit user" }}
         </v-toolbar>
         <v-form>
           <v-text-field v-model="user.username" label="Username" />
@@ -16,9 +16,9 @@
         </v-form>
         <v-card-actions>
           <v-btn @click="persist">
-            {{ isNew ? "Create" : "Save" }}
+            {{ isNewUser ? "Create" : "Save" }}
           </v-btn>
-          <v-btn v-if="!isNew" @click="deleteUser">Delete</v-btn>
+          <v-btn v-if="!isNewUser" @click="deleteUser">Delete User</v-btn>
         </v-card-actions>
       </v-card>
     </template>
@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     persist() {
-      if (this.isNew) {
+      if (this.isNewUser) {
         api.users
             .create({
               username: this.user.username,
@@ -47,7 +47,7 @@ export default {
             .then(() => this.$emit("refresh"));
       } else {
         api.users
-            .edit({
+            .edit(this.user.id,{
               id: this.user.id,
               username: this.user.username,
               email: this.user.email,
@@ -65,7 +65,7 @@ export default {
     }
   },
   computed: {
-    isNew: function () {
+    isNewUser: function () {
       return !this.user.id;
     },
   },

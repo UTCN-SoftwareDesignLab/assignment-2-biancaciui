@@ -46,24 +46,6 @@ public class UserService {
                 .orElseThrow(() -> new EntityNotFoundException("User not found: " + id));
     }
 
-//    public UserDTO create(UserDTO userDTO){
-//        //TODO: verify the username and email to be unique in the database
-//        Set<Role> roles = new HashSet<>();
-//
-//        //getting the roles for this new user, else insert the default one: CUSTOMER
-//        if(userDTO.getRole()==null){
-//            Role role = roleRepository.findByName(ERole.EMPLOYEE).orElseThrow(() -> new RuntimeException("Role not found!"));
-//            roles.add(role);
-//        }
-//        else {
-//            Role role = roleRepository.findByName(ERole.valueOf(userDTO.getRole())).orElseThrow(()->new RuntimeException("User doesn't have an assigned role!"));
-//            roles.add(role);
-////        }
-//////        return userMapper.toDto(userRepository.save(
-//////                userMapper.fromDto(userDTO)
-//////        ));
-//    }
-
     public UserDTO create(UserDTO userDTO) {
         User actUser = userMapper.fromDto(userDTO);
 
@@ -106,10 +88,10 @@ public class UserService {
         user.setEmail(userDTO.getEmail());
         user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
 
-        Set<Role> roles = new HashSet<>();
-        Role role = roleRepository.findByName(ERole.valueOf(userDTO.getRole())).orElseThrow(()->new RuntimeException("User doesn't have an assigned role yet!"));
-        roles.add(role);
-        user.setRoles(roles);
+//        Set<Role> roles = new HashSet<>();
+//        Role role = roleRepository.findByName(ERole.valueOf(userDTO.getRole())).orElseThrow(()->new RuntimeException("User doesn't have an assigned role yet!"));
+//        roles.add(role);
+//        user.setRoles(roles);
         return userMapper.toDto(
                 userRepository.save(user)
         );

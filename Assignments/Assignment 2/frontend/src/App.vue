@@ -3,8 +3,8 @@
     <v-main>
       <v-container fluid>
         <TopBar v-if="isLoggedIn"></TopBar>
-        <Admin v-if="isLoggedIn && isAdmin"> </Admin>
-        <Employee  v-if="isLoggedIn && !isAdmin"></Employee>
+<!--        <Admin v-if="isLoggedIn && isAdmin"> </Admin>-->
+<!--        <Employee  v-if="isLoggedIn && !isAdmin"></Employee>-->
         <router-view></router-view>
       </v-container>
     </v-main>
@@ -27,9 +27,9 @@ export default {
     isLoggedIn: function () {
       return this.$store.state.auth.status.loggedIn;
     },
-    isAdmin: function () {
-      return this.$store.getters.isAdmin;
-    },
+    // isAdmin: function () {
+    //   return this.$store.getters.isAdmin;
+    // },
   },
 };
 </script>

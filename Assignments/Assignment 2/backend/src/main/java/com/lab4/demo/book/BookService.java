@@ -34,11 +34,13 @@ public class BookService {
     }
 
     List<BookDTO> filterByDescription(String s){
-//        return bookRepository.findAll().stream()
-//                .filter(b -> ( b.getAuthor().equals(s) || b.getDescription().equals(s) || b.getGenre().equals(s))) //find out the books that are in stock
-//                .map(bookMapper::toDto)
-//                .collect(Collectors.toList());
         return bookRepository.findByDescription(s).stream()
+                .map(bookMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<BookDTO> findByAmount(int amount) {
+        return bookRepository.findBooksByAmount(amount).stream()
                 .map(bookMapper::toDto)
                 .collect(Collectors.toList());
     }
@@ -99,7 +101,7 @@ public class BookService {
 
     public BookDTO changeAmount(Long id, int amount) {
         Book actBook = findById(id);
-        actBook.setAmount(amount);
+        actBook.setAmount(actBook.getAmount() - amount);
         return bookMapper.toDto(bookRepository.save(actBook));
     }
 

@@ -43,13 +43,12 @@ public class UserController {
         return userService.changePassword(id, password);
     }
 
-
     @DeleteMapping(ENTITY) //delete by id
-    public void delete(@PathVariable Long id){
+    public void deleteById(@PathVariable Long id){
         userService.delete(id);
     }
     @DeleteMapping()
-    public void delete(){
+    public void deleteAll(){
         userService.deleteAll();
     }
 

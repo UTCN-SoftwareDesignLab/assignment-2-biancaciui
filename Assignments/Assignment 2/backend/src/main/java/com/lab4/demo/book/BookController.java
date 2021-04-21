@@ -69,13 +69,10 @@ public class BookController {
     @DeleteMapping()
     public void deleteAll(){ bookService.deleteAll(); }
 
-    @GetMapping(EXPORT_REPORT)
-    public String exportReport(@PathVariable ReportType type) { return reportServiceFactory.getReportService(type).export(); }
-
-    @PostMapping(ENTITY+SELL_BOOK)
-    public boolean sell(@PathVariable Long id, @PathVariable int amount) {
-        return bookService.sell(id, amount);
-    }
+//    @PostMapping()
+//    public boolean sell(@PathVariable Long id, @PathVariable int amount) {
+//        return bookService.sell(id, amount);
+//    }
 
     @GetMapping("/out_stock")
     public List<BookDTO> findOutOfStock() {

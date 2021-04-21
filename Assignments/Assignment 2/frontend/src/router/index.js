@@ -1,8 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-import UserList from "../views/UserList.vue";
-import BookList from "../views/BookList.vue";
+import UserList from "../views/UserList.vue";//ADMIN
+import BookList from "../views/BookList.vue";//ADMIN
+import SellBook from "../views/SellBook.vue";//EMPLOYEE
 import Login from "../views/Login";
 
 import { auth as store } from "../store/auth.module";
@@ -15,19 +16,21 @@ const routes = [
     name: "Login",
     component: Login,
   },
-  {
+  { //ADMIN
     path: "/users",
     name: "Users",
     component: UserList,
     beforeEnter: (to, from, next) => {
       if (store.getters.isAdmin) {
         next();
+        console.log("INDEX ADMIN");
       } else {
-        next({ name: "Books" });
+        console.log("INDEX EMPLOYEE");
+        next({ name: "SellBook" });
       }
     },
   },
-  {
+  { //ADMIN
     path: "/books",
     name: "Books",
     component: BookList,
@@ -35,10 +38,24 @@ const routes = [
       if (store.state.status.loggedIn) {
         next();
       } else {
+        next({ name: "SellBook" });
+      }
+    },
+  },
+  {
+    path: "/bookstore",
+    name: "SellBook",
+    component: SellBook,
+    beforeEnter: (to, from, next) => {
+      if (store.state.status.loggedIn) {
+        console.log("BOOK STORE CREATED");
+        next();
+      } else {
         next({ name: "Home" });
       }
     },
   },
+
   {
     path: "/about",
     name: "About",
